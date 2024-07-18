@@ -11,7 +11,7 @@ const SocialButton: FC <SocialButtonProps> = ({ url, icon }) => {
       href={ url }
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center justify-center w-10 h-10 bg-gray-900 text-white rounded-full hover:bg-blue-600 transition-colors duration-200"
+      className="inline-flex items-center justify-center w-10 h-10 bg-gray-900 text-white rounded-full hover:bg-gray-500 transition-colors duration-200"
     >
       { icon }
     </a>

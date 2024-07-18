@@ -82,10 +82,6 @@ export default function Home() {
   ]
   const priceLight = [
     {
-      header: 'Одна сессия',
-      price: '5000 ₽',
-    },
-    {
       header: 'Две сессии',
       price: '9500 ₽',
       oldPrice: '10000 ₽',
@@ -203,20 +199,20 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
           </div>
-          <div className="w-full flex flex-col items-start md:w-1/2 space-y-4 md:mb-0 md:order-1 md:static absolute  bottom-0 p-4">
+          <div className="w-full flex flex-col justify-center md:w-1/2 space-y-4 md:mb-0 md:order-1 md:static absolute h-full  p-4">
             <div className="text-4xl md:text-6xl font-bold space-y-2">
               <p>Анна</p>
               <p>Царева</p>
             </div>
             <p className="text-lg">Сертифицированный коуч ICF</p>
-            <Link href={waSession} className="inline-block bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
-              Запись на сессию
+            <Link href={waSession} className="text-center inline-block bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+              Записаться на сессию
             </Link>
           </div>
         </div>
       </div>
 
-
+      <div>
         <Card header="Обо мне">
           <SimpleCell
             before={<IoEarth size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
@@ -252,8 +248,10 @@ export default function Home() {
             Работаю на регулярной основе с супервизором и личным коучем
           </SimpleCell>
         </Card>
-        <div>
-          <div className="relative w-screen h-64 md:h-full -mx-4 md:-mx-8 mb-8  ">
+      </div>
+        
+        <div className="flex  md:gap-10 items-center flex-wrap">
+          <div className="relative w-screen md:w-1/2 md:mx-0 h-96 -mx-4  mb-8 md:order-2">
             <Image
               src={hero2}
               alt="Vertical Photo 2"
@@ -261,18 +259,18 @@ export default function Home() {
               objectFit="cover"
             />
           </div>
-          <div className="mb-8">
-            <p className="mb-2">
+          <div className="mb-8 md:w-1/2">
+            <p className="mb-6">
               На протяжении 18 лет тренировала танцоров, выращивала из них лидеров, педагогов, чьи работы как сольных артистов, так и постановщиков вы видите на экранах федеральных каналов, кино, а так же на различных шоу самых разных форматов. 
             </p>
-            <Link href="#achievements" className="flex items-center mb-2">
-              <RiLink size={24} style={{ color: 'rgb(6, 182, 212)' }} className="mr-2"/>
+            <Link href="#achievements" className="flex items-center mb-6">
+              <RiLink size={24} style={{ color: 'rgb(6, 182, 212)' }} className="mr-2 w-16"/>
               <span className=" text-cyan-500">
-                Мои личные достижения, победы и подробная работа.
+              Мои личные достижения, победы и подробную мою работу вы можете прочесть тут.
               </span>
             </Link>
             
-            <p className="mb-2">
+            <p className="mb-6">
               Я знаю все о вопросах реализации потенциала, достижениях своих целей и улучшении качества своей жизни и через коучинг помогаю другим людям в работе над собой.
             </p>
           </div>
@@ -287,8 +285,8 @@ export default function Home() {
               {description}
             </SimpleCell>
           )}
-          <Link href={waSession} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
-            Запись на сессию
+          <Link href={waSession} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+            Записаться на сессию
           </Link>
         </Card>
           
@@ -301,15 +299,21 @@ export default function Home() {
                 Длительность установочной сессии 30 минут.
               </p>
             </div>
-            <Link href={waOptionSession} className="inline-block text-center bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
-              Запись на установочную сессию
+            <Link href={waOptionSession} className="inline-block text-center bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+              Записаться на установочную сессию
             </Link>
           </Card>
           
           <div>
             <h1 className="text-4xl mb-3">Цены</h1>
             <Card>
-              <div className="flex flex-col md:flex-row justify-around flex-wrap">
+              <SimpleCell
+                before={<Header>Разовая сессия</Header>}
+              >
+                <Header className="text-2xl">5000 ₽</Header>
+              </SimpleCell>
+              <Header className="mb-4">Действует акция на покупку пакетов сессий</Header>
+              <div className="flex flex-col md:flex-row md:gap-10 flex-wrap">
                 {priceLight.map(({header, price, oldPrice}, idx) => 
                 <SimpleCell
                   key={header}
@@ -317,20 +321,23 @@ export default function Home() {
                   header={<Header>{header}</Header>}
                 >
                   <div className="flex gap-4">
-                    <Header className="text-2xl">{price}</Header>
+                    <div>
+                      <Header className="text-2xl">{price}</Header>
+                    </div>
+                    <div className="relative inline-block">
+                      <span className="text-lg font-semibold">
+                        {oldPrice}
+                      </span>
+                      <span className="absolute inset-0 transform rotate-12 bg-gray-500 h-0.5 top-3"></span>
+                    </div>
                   </div>
-                  {oldPrice && 
-                  <div className="relative inline-block">
-                    <span className="text-lg font-semibold">
-                      {oldPrice}
-                    </span>
-                    <span className="absolute inset-0 transform rotate-12 bg-gray-500 h-0.5 top-3"></span>
-                  </div>}
+                  
                 </SimpleCell> 
                 )}
               </div>
               
-              <span>‌Цены на пакеты действуют единоразовым платежом.</span>
+              <p className="mb-2">‌Цены на пакеты действуют единоразовым платежом.</p>
+              <p>‌Длительность сессии — 60 минут</p>
             </Card>
           </div>
         <Accordion>
@@ -344,7 +351,7 @@ export default function Home() {
           <Card>
             <div className="flex items-center gap-5">
               <Header>Остались вопросы?</Header>
-              <Link href={waQuestion} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
+              <Link href={waQuestion} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
                 Спросить
               </Link>
             </div>
@@ -383,7 +390,7 @@ export default function Home() {
                       icon={ <FaTiktok size={24}/> }
                     />
                   </div>
-                  <Link href="https://t.me/annatsareva" className="inline-block w-full md:w-30 text-center bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
+                  <Link href="https://t.me/annatsareva" className="inline-block w-full md:w-30 text-center bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
                     + Подписаться
                   </Link>
                   
@@ -413,7 +420,7 @@ export default function Home() {
               </div>
           </section>
           <section className="py-12">
-            <h2 className="text-3xl font-bold text-center mb-8">Участие в танцевальных соревнованиях и заслуги</h2>
+            <h2 className="text-3xl font-bold text-center mb-8">Участие в танцевальных соревнованиях</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {danceAchieve.map((achievement, index) => (
                 <div key={index} className="bg-slate-800 p-4 shadow-md rounded-lg transform transition-transform duration-300 hover:shadow-2xl hover:-translate-y-1">

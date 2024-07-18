@@ -10,7 +10,7 @@ interface SimpleCellProps {
 
 const SimpleCell: FC<SimpleCellProps> = ({ before, after, header, children, mode }) => {
   return (
-    <div className={`flex space-x-2 mb-8 ${mode === 'white' ? 'text-white' : null}`}>
+    <div className={`flex space-x-2  mb-8 ${mode === 'white' ? 'text-white' : null}`}>
       {before ?
         <div>
           {before}
