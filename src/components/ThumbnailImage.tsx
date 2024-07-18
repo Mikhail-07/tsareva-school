@@ -1,7 +1,7 @@
 "use client"
 import Image, { StaticImageData } from 'next/image';
 import React, { FC, useState } from 'react'
-import { IoCloseCircle } from 'react-icons/io5';
+import { IoMdClose } from 'react-icons/io';
 
 interface ThumbnailImageProps{
   img: StaticImageData 
@@ -40,7 +40,7 @@ const ThumbnailImage: FC<ThumbnailImageProps> = ({ img }) => {
               onClick={closeModal}
               className="absolute top-4 right-4 m-4 text-white text-3xl font-bold"
             >
-              <IoCloseCircle size={24}/>
+              <IoMdClose size={24}/>
             </button>
             <div className="max-w-screen max-h-screen overflow-auto">
               <Image
