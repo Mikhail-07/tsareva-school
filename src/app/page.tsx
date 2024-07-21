@@ -183,13 +183,21 @@ export default function Home() {
     };
   }, []);
 
-  const shrinkFactor = Math.max(0, 1 - scrollY / 5000); // Adjust the denominator to control shrink speed
-  const opacityFactor = Math.max(0, 1 - scrollY / 2000); // Adjust the denominator to control fade speed
-
+  const shrinkFactor = Math.max(0, 1 - scrollY / 5000);
+  const opacityFactor = Math.max(0, 1 - scrollY / 2000);
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+      <ModalWindow
+        onClose={() => setIsFormModalOpen(false)}
+        isOpen={isFormModalOpen}
+      >
+        <RegistrationForm
+          isFormModalOpen={ isFormModalOpen }
+          onClose={ () => setIsFormModalOpen(false) }
+        />
+      </ModalWindow>
       <div className="h-screen py-4 mb-14 ">
-        <div className="fixed z-10 max-w-7xl mx-auto h-full inset-x-0 px-4 transition-all duration-300" style={{ transform: `scale(${shrinkFactor})`, opacity: opacityFactor }}>
+        <div className="fixed z-10 max-w-7xl mx-auto h-full inset-x-0 px-4 transition-all " style={{ transform: `scale(${shrinkFactor})`, opacity: opacityFactor }}>
           <div className="flex flex-col h-full md:flex-row md:items-center justify-between rounded-3xl mb-6 relative">
             <div className="mb-2 md:mb-0 relative md:w-1/2 w-full h-full md:order-2 overflow-hidden">
               <img
@@ -241,7 +249,7 @@ export default function Home() {
               >
                 <div className="max-w-screen max-h-screen overflow-auto">
                   <img
-                    src='/certify.png'
+                    src='/certify.webp'
                     alt="Full-size image"
                     className="w-auto h-auto object-contain rounded"
                   />
