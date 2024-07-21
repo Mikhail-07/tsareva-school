@@ -1,9 +1,5 @@
-import Image from "next/image";
-import hero from '../../public/hero.png'
-import hero2 from '../../public/hero2.jpeg'
-import certify from '../../public/certify.png'
-import avatar from '../../public/avatar.jpg'
-import qrCode from '../../public/qrCode.svg'
+"use client"
+
 import Link from "next/link";
 import Card from "@/components/Card";
 import SimpleCell from "@/components/SimpleCell";
@@ -18,20 +14,19 @@ import AccordionItem from "@/components/AccordionItem";
 import { FaInstagram, FaTelegramPlane, FaTiktok } from "react-icons/fa";
 import SocialButton from "@/components/SocialButton";
 import { IoEarth } from "react-icons/io5";
-import ThumbnailImage from "@/components/ThumbnailImage";
 import { RiLink } from "react-icons/ri";
-import Head from "next/head";
+import { useEffect, useState } from "react";
+import ModalWindow from "@/components/ModalWindow";
+import RegistrationForm from "@/components/RegistrationForm";
 
 export default function Home() {
-
-  const waOptionSession = "https://wa.me/9118369411?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5,%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BE%D1%87%D0%BD%D1%83%D1%8E%20%D1%81%D0%B5%D1%81%D1%81%D0%B8%D1%8E"
-  const waSession = 'https://wa.me/9118369411?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5,%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%81%D0%B5%D1%81%D1%81%D0%B8%D1%8E'
-  const waQuestion = "https://wa.me/9118369411?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5,%20%D1%83%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B5%D1%81%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81"
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+  const [isCertifyModalOpen, setIsCertifyModalOpen] = useState(false);
 
   const withWhom = [
     {
       header: 'Поиск и определения самореализации',
-      description: 'Как себя реализовать, если многое нравится, или наоборот, не знаете что нравится'
+      description: 'Как себя реализовать, если многое нравится, или наоборот, не знаете, что нравится'
     },
     {
       header: 'Планирование',
@@ -100,26 +95,25 @@ export default function Home() {
   const accordionItems = [
     {
       title: 'Как проходит сессия?',
-      content: 'Сессия проходит в онлайн формате, где я задаю вам вопросы, которые помогают вам лучше понять свои мысли и чувства, а также найти ответы на ваши вопросы.'
+      content: 'В назначенное время мы связываемся с вами по видео-связи, и обсуждаем ваш запрос. Если вам тяжело определить запрос, я вам в этом помогаю. В процессе обсуждения я помогаю вам сконтейнировать ваши мысли и чувства и найти ответ.'
     },
     {
       title: 'Что такое установочная сессия?',
-      content: 'Для новых клиентов я провожу бесплатную установочную сессию, на которой мы знакомимся, я рассказываю о принципах коучинга, о формате работы, отвечаю на все ваши вопросы и помогаю вам определить ваш запрос. Это нужно для того, чтобы мы могли понять, подходим ли мы друг другу, чтобы у вас сформировалось правильное понимание о коуче и его работе, и чтобы вы смогли решить для себя, хотите ли вы идти в коучинг. Также это возможность для меня понять, могу ли я работать с вашим запросом и подхожу ли я вам. Бывает так, что клиенту необходим другой специалист, об этом я сообщаю на установочной сессии. '
+      content: 'Это сессия-знакомство, она же ознакомительная - первая встреча, цель которой – знакомство коуча и клиента. Это своеобразное «первое свидание», когда коучу и клиенту предстоит понять, насколько они подходят друг другу и договориться обо всех деталях будущего взаимодействия. Подготавливаться к установочной сессии не нужно.'
     },
     {
-      title: 'Cколько длится установочная сессия?',
-      content: 'Длительность установочной сессии 15-20 минут.'
+      title: 'Конфиденциальность',
+      content: 'Я сохраняю тайну наших сессий и обсуждаемых тем между мной и клиентом.'
     },
     {
       title: 'Подходит ли мне коучинг?',
-      content: 'После установочной сессии мы оба понимаем, готовы ли мы начать работу. Если да, то мы определяем дату и время для первой рабочей сессии.'
+      content: 'После установочной сессии мы выясняем, подходит ли вам коучинг, или же вам необходим другой специалист.'
     },
     {
-      title: 'Если вы оплатили сессию, но ваш вопрос не был решен...',
-      content: 'Если Ваш запрос не возможно решить через коучинг, я произвожу возврат средств.'
+      title: 'Если я не доволен результатом',
+      content: 'Если вы не довольны результатом сессии и ваш запрос не был решен, я произвожу возврат средств за не израсходованные сессии.'
     }
   ]
-
   const achievements = [
     'Хореограф и актриса сериала «1703» (Лучший сериал 2022г)',
     'Танцор в клипе KAYA «Контент»',
@@ -158,7 +152,6 @@ export default function Home() {
     "Сопродюсер танцевального центра «ONLINE» г. Магадан 2011г.",
     "Хореограф и создатель танцевального коллектива «ТОЧКИ», многократные победители областных и городских конкурсов 2007-2011г. Магадан"
   ];
-
   const danceAchieve = [
     "Победитель Runway на «Moulin Rouge Vogue Ball» 2019",
     "Финалист Old way на «Moulin Rouge Vogue Ball» 2019",
@@ -174,94 +167,124 @@ export default function Home() {
     "Полуфиналист в категории Femme Vogue – «Christmas Vogue Ball» 2013",
     "Полуфиналист в категории HipHop «UDS Fest» Магадан 2012",
     "Победитель в категории HipHop «Unidance Battle» Магадан 2011"
-];
+  ];
+
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const shrinkFactor = Math.max(0, 1 - scrollY / 5000); // Adjust the denominator to control shrink speed
+  const opacityFactor = Math.max(0, 1 - scrollY / 2000); // Adjust the denominator to control fade speed
 
   return (
-    <>
-      <Head>
-        <title>проффесиональный коуч. Анна Царева</title>
-        <meta name="description" content="Квалифицированный проффесиональный коуч, владею классическим коучингом, коучингом ICF и трансперсональным коучингом" />
-        <meta name="keywords" content="Анна Царева, коуч, коучинг" />
-        <meta name="author" content="Анна Царева" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="canonical" href="https://www.example.com/your-page" />
-      </Head>
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-      <div className="h-screen py-4 mb-14">
-        <div className="flex flex-col h-full md:flex-row md:items-center justify-between rounded-3xl mb-6 relative">
-          <div className="mb-2 md:mb-0 relative md:w-1/2 w-full h-full md:order-2 overflow-hidden">
-            <Image
-              src={hero}
-              alt="Vertical Photo"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-3xl"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-          </div>
-          <div className="w-full flex flex-col justify-center md:w-1/2 space-y-4 md:mb-0 md:order-1 md:static absolute h-full  p-4">
-            <div className="text-4xl md:text-6xl font-bold space-y-2">
-              <p>Анна</p>
-              <p>Царева</p>
+      <div className="h-screen py-4 mb-14 ">
+        <div className="fixed z-10 max-w-7xl mx-auto h-full inset-x-0 px-4 transition-all duration-300" style={{ transform: `scale(${shrinkFactor})`, opacity: opacityFactor }}>
+          <div className="flex flex-col h-full md:flex-row md:items-center justify-between rounded-3xl mb-6 relative">
+            <div className="mb-2 md:mb-0 relative md:w-1/2 w-full h-full md:order-2 overflow-hidden">
+              <img
+                src="/hero.webp"
+                alt="Vertical Photo"
+                className="rounded-3xl object-cover w-full h-full"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
             </div>
-            <p className="text-lg">Сертифицированный коуч ICF</p>
-            <Link href={waSession} className="text-center inline-block bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
-              Записаться на сессию
-            </Link>
+            <div className="w-full flex flex-col justify-center md:w-1/2 space-y-4 md:mb-0 md:order-1 md:static absolute h-full  p-4">
+              <div className="text-4xl md:text-6xl font-bold space-y-2">
+                <p>Анна</p>
+                <p>Царева</p>
+              </div>
+              <p className="text-lg">Сертифицированный коуч ICF</p>
+              <button
+                onClick={() => setIsFormModalOpen(true)}
+                className="text-center inline-block bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
+              >
+                Записаться на сессию
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
-      <div>
-        <Card header="Обо мне">
-          <SimpleCell
-            before={<IoEarth size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
-            header={<Header>Сертификат ICF</Header>}
-          >
-            <div>
-              <p className="mb-4">Сертифицированный коуч ICF (Международная федерация коучей)</p>
-              <ThumbnailImage img={certify}/>
-            </div>
-          </SimpleCell>
-          <SimpleCell
-            before={<TbFileCertificate size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
-            header={<Header>Дипломированный коуч РФ</Header>}
-          >
-            Квалифицированный проффесиональный коуч
-          </SimpleCell>
-          <SimpleCell
-            before={<HiOutlineAcademicCap size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
-            header={<Header>Окончила международную академию трансперсонального коучинга</Header>}
-          >
-            Владею классическим коучингом, коучингом ICF и трансперсональным коучингом
-          </SimpleCell>
-          <SimpleCell
-            before={<FaArrowTrendUp  size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
-            header={<Header>Повышаю квалификацию</Header>}
-          >
-            Курсы, семинары, проф. переподготовки
-          </SimpleCell>
-          <SimpleCell
-            before={<LiaHandsHelpingSolid size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
-            header={<Header>Регулярные супервизии и личная терапия</Header>}
-          >
-            Работаю на регулярной основе с супервизором и личным коучем
-          </SimpleCell>
-        </Card>
-      </div>
-        
-        <div className="flex  md:gap-10 items-center flex-wrap">
+      <div className="bg-gray-900 rounded-t-3xl relative z-20">
+        <div>
+          <Card header="Обо мне">
+            <SimpleCell
+              before={<IoEarth size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
+              header={<Header>Сертификат ICF</Header>}
+            >
+              <div>
+                <p className="mb-4">Сертифицированный коуч ICF (Международная федерация коучей)</p>
+                <div
+                  className="relative cursor-pointer w-24 h-full"
+                  onClick={() => setIsCertifyModalOpen(true)}
+                >
+                  <img
+                    src='/certify.webp'
+                    alt="Thumbnail"
+                    className="w-full h-auto object-cover rounded"
+                  />
+                </div>
+              </div>
+              <ModalWindow 
+                onClose={() => setIsCertifyModalOpen(false)}
+                isOpen={isCertifyModalOpen}
+              >
+                <div className="max-w-screen max-h-screen overflow-auto">
+                  <img
+                    src='/certify.png'
+                    alt="Full-size image"
+                    className="w-auto h-auto object-contain rounded"
+                  />
+                </div>
+              </ModalWindow>
+            </SimpleCell>
+            <SimpleCell
+              before={<TbFileCertificate size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
+              header={<Header>Дипломированный коуч РФ</Header>}
+            >
+              Квалифицированный профессиональный коуч
+            </SimpleCell>
+            <SimpleCell
+              before={<HiOutlineAcademicCap size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
+              header={<Header>Окончила международную академию трансперсонального коучинга</Header>}
+            >
+              Владею классическим коучингом, коучингом ICF и трансперсональным коучингом
+            </SimpleCell>
+            <SimpleCell
+              before={<FaArrowTrendUp  size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
+              header={<Header>Повышаю квалификацию</Header>}
+            >
+              Курсы, семинары, проф. переподготовки
+            </SimpleCell>
+            <SimpleCell
+              before={<LiaHandsHelpingSolid size={24} style={{ color: 'rgb(156, 163, 175)' }} />}
+              header={<Header>Регулярные супервизии и личная терапия</Header>}
+            >
+              Работаю на регулярной основе с супервизором и личным коучем
+            </SimpleCell>
+          </Card>
+        </div>
+        <div className="flex  md:gap-10 md:flex-nowrap items-center flex-wrap">
           <div className="relative w-screen md:w-1/2 md:mx-0 h-96 -mx-4  mb-8 md:order-2">
-            <Image
-              src={hero2}
+            <img
+              src='/hero2.jpeg'
               alt="Vertical Photo 2"
-              layout="fill"
-              objectFit="cover"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
           <div className="mb-8 md:w-1/2">
             <p className="mb-6">
-              На протяжении 18 лет тренировала танцоров, выращивала из них лидеров, педагогов, чьи работы как сольных артистов, так и постановщиков вы видите на экранах федеральных каналов, кино, а так же на различных шоу самых разных форматов. 
+              На протяжении 18 лет тренировала танцоров, выращивала из них лидеров, педагогов, чьи работы как сольных артистов, так и постановщиков вы видите на экранах федеральных каналов, кино, а также на различных шоу самых разных форматов.
             </p>
             <Link href="#achievements" className="flex items-center mb-6">
               <RiLink size={24} style={{ color: 'rgb(6, 182, 212)' }} className="mr-2 w-16"/>
@@ -285,61 +308,61 @@ export default function Home() {
               {description}
             </SimpleCell>
           )}
-          <Link href={waSession} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+          <button onClick={() => setIsFormModalOpen(true)} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
             Записаться на сессию
-          </Link>
+          </button>
         </Card>
-          
-          <Card header="Бесплатная установочная сессия">
-            <div>
-              <p className="pb-2">
-                Для новых клиентов я провожу бесплатную установочную сессию, на которой мы с Вами знакомимся, я рассказываю о принципах коучинга, о формате работы, отвечаю на все Ваши вопросы и помогаю Вам определить ваш запрос. И только после знакомства и установочной сессии мы записываемся на рабочую сессию.
-              </p>
-              <p className="pb-2">
-                Длительность установочной сессии 30 минут.
-              </p>
-            </div>
-            <Link href={waOptionSession} className="inline-block text-center bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
-              Записаться на установочную сессию
-            </Link>
-          </Card>
-          
+        <Card header="Бесплатная установочная сессия">
           <div>
-            <h1 className="text-4xl mb-3">Цены</h1>
-            <Card>
-              <SimpleCell
-                before={<Header>Разовая сессия</Header>}
-              >
-                <Header className="text-2xl">5000 ₽</Header>
-              </SimpleCell>
-              <Header className="mb-4">Действует акция на покупку пакетов сессий</Header>
-              <div className="flex flex-col md:flex-row md:gap-10 flex-wrap">
-                {priceLight.map(({header, price, oldPrice}, idx) => 
-                <SimpleCell
-                  key={header}
-                  before={<span>{idx + 1}.</span>}
-                  header={<Header>{header}</Header>}
-                >
-                  <div className="flex gap-4">
-                    <div>
-                      <Header className="text-2xl">{price}</Header>
-                    </div>
-                    <div className="relative inline-block">
-                      <span className="text-lg font-semibold">
-                        {oldPrice}
-                      </span>
-                      <span className="absolute inset-0 transform rotate-12 bg-gray-500 h-0.5 top-3"></span>
-                    </div>
-                  </div>
-                  
-                </SimpleCell> 
-                )}
-              </div>
-              
-              <p className="mb-2">‌Цены на пакеты действуют единоразовым платежом.</p>
-              <p>‌Длительность сессии — 60 минут</p>
-            </Card>
+            <p className="pb-2">
+              Для новых клиентов я провожу бесплатную установочную сессию, на которой мы с Вами знакомимся, я рассказываю о принципах коучинга, о формате работы, отвечаю на все Ваши вопросы и помогаю Вам определить ваш запрос. И только после знакомства и установочной сессии мы записываемся на рабочую сессию.
+            </p>
+            <p className="pb-2">
+              Длительность установочной сессии 30 минут.
+            </p>
           </div>
+          <button onClick={() => setIsFormModalOpen(true)} className="inline-block text-center bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+            Записаться на установочную сессию
+          </button>
+        </Card>
+        <div>
+          <h1 className="text-4xl mb-3">Цены</h1>
+          <Card>
+            <SimpleCell
+              before={<Header>Разовая сессия</Header>}
+            >
+              <Header className="text-2xl">5000 ₽</Header>
+            </SimpleCell>
+            <Header className="mb-4">Действует акция на покупку пакетов сессий</Header>
+            <div className="flex flex-col md:flex-row md:gap-10 flex-wrap">
+              {priceLight.map(({header, price, oldPrice}, idx) => 
+              <SimpleCell
+                key={header}
+                before={<span>{idx + 1}.</span>}
+                header={<Header>{header}</Header>}
+              >
+                <div className="flex gap-4">
+                  <div>
+                    <Header className="text-2xl">{price}</Header>
+                  </div>
+                  <div className="relative inline-block">
+                    <span className="text-lg font-semibold">
+                      {oldPrice}
+                    </span>
+                    <span className="absolute inset-0 transform rotate-12 bg-gray-500 h-0.5 top-3"></span>
+                  </div>
+                </div>
+                
+              </SimpleCell> 
+              )}
+            </div>
+            <p className="mb-2">‌Цены на пакеты действуют единоразовым платежом.</p>
+            <p className="mb-2"> ‌Длительность сессии — 60 минут</p>
+            <button onClick={() => setIsFormModalOpen(true)} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+              Записаться на сессию
+            </button>
+          </Card>
+        </div>
         <Accordion>
           {accordionItems.map(({title, content}) =>
             <AccordionItem key={title} title={title}>
@@ -351,7 +374,7 @@ export default function Home() {
           <Card>
             <div className="flex items-center gap-5">
               <Header>Остались вопросы?</Header>
-              <Link href={waQuestion} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+              <Link href="https://t.me/AnnaTsareva1" passHref onClick={() => setIsFormModalOpen(true)} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
                 Спросить
               </Link>
             </div>
@@ -360,10 +383,10 @@ export default function Home() {
             <div className="flex flex-wrap md:flex-nowrap justify-center lg:justify-start gap-5">
               <div className="h-full flex items-center justify-center w-full md:w-1/3">
                 <div className="w-full max-w-52 max-h-full aspect-square rounded-full overflow-hidden">
-                  <Image
-                    src={avatar}
+                  <img
+                    src='/avatar.jpg'
                     alt="Avatar"
-                    objectFit="contain"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               </div>
@@ -393,17 +416,14 @@ export default function Home() {
                   <Link href="https://t.me/annatsareva" className="inline-block w-full md:w-30 text-center bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
                     + Подписаться
                   </Link>
-                  
                 </div>
-                
               </div>
               <div className="hidden lg:block lg:w-1/3">
                 <Link href="https://t.me/annatsareva" passHref>
-                  <Image
-                    className="w-full max-w-52"
-                    src={qrCode}
+                  <img
+                    className="w-full max-w-52 object-contain"
+                    src='/qrCode.svg'
                     alt="QR Code"
-                    objectFit="contain"
                   />
                 </Link>
               </div>
@@ -430,7 +450,8 @@ export default function Home() {
             </div>
           </section>
         </div>
+      </div>
+        
     </main>
-    </>
   );
 }
