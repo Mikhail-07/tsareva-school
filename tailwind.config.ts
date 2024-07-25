@@ -17,6 +17,9 @@ const config: Config = {
         'height': 'height',
         'spacing': 'margin, padding',
       },
+      height: {
+        'screen-lvh': '100lvh',
+      },
     },
   },
   variants: {

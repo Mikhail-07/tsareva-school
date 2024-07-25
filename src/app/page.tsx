@@ -169,7 +169,12 @@ export default function Home() {
     "Победитель в категории HipHop «Unidance Battle» Магадан 2011"
   ];
 
+  const waOptionSession = "https://wa.me/9118369411?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5,%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BE%D1%87%D0%BD%D1%83%D1%8E%20%D1%81%D0%B5%D1%81%D1%81%D0%B8%D1%8E"
+  const waSession = 'https://wa.me/9118369411?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5,%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%81%D0%B5%D1%81%D1%81%D0%B8%D1%8E'
+  const waQuestion = "https://wa.me/9118369411?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5,%20%D1%83%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B5%D1%81%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81"
+
   const [scrollY, setScrollY] = useState(0);
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -187,7 +192,7 @@ export default function Home() {
   const opacityFactor = Math.max(0, 1 - scrollY / 2000);
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-      <ModalWindow
+      {/* <ModalWindow
         onClose={() => setIsFormModalOpen(false)}
         isOpen={isFormModalOpen}
       >
@@ -195,9 +200,9 @@ export default function Home() {
           isFormModalOpen={ isFormModalOpen }
           onClose={ () => setIsFormModalOpen(false) }
         />
-      </ModalWindow>
-      <div className="h-screen py-4 mb-14 ">
-        <div className="fixed z-10 max-w-7xl mx-auto h-full inset-x-0 px-4 transition-all " style={{ transform: `scale(${shrinkFactor})`, opacity: opacityFactor }}>
+      </ModalWindow> */}
+      <div className="h-screen-lvh py-4 mb-14 ">
+        <div className="fixed z-10 max-w-7xl mx-auto h-full inset-x-0 px-4 " style={{ transform: `scale(${shrinkFactor})`, opacity: opacityFactor }}>
           <div className="flex flex-col h-full md:flex-row md:items-center justify-between rounded-3xl mb-6 relative">
             <div className="mb-2 md:mb-0 relative md:w-1/2 w-full h-full md:order-2 overflow-hidden">
               <img
@@ -213,12 +218,13 @@ export default function Home() {
                 <p>Царева</p>
               </div>
               <p className="text-lg">Сертифицированный коуч ICF</p>
-              <button
-                onClick={() => setIsFormModalOpen(true)}
+              <Link
+                // onClick={() => setIsFormModalOpen(true)}
+                href={waSession}
                 className="text-center inline-block bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
               >
                 Записаться на сессию
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -316,9 +322,13 @@ export default function Home() {
               {description}
             </SimpleCell>
           )}
-          <button onClick={() => setIsFormModalOpen(true)} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+          <Link 
+            href={waSession}
+            // onClick={() => setIsFormModalOpen(true)} 
+            className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
+          >
             Записаться на сессию
-          </button>
+          </Link>
         </Card>
         <Card header="Бесплатная установочная сессия">
           <div>
@@ -329,9 +339,13 @@ export default function Home() {
               Длительность установочной сессии 30 минут.
             </p>
           </div>
-          <button onClick={() => setIsFormModalOpen(true)} className="inline-block text-center bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+          <Link 
+            href={waOptionSession}
+            // onClick={() => setIsFormModalOpen(true)} 
+            className="inline-block text-center bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
+           >
             Записаться на установочную сессию
-          </button>
+          </Link>
         </Card>
         <div>
           <h1 className="text-4xl mb-3">Цены</h1>
@@ -366,9 +380,13 @@ export default function Home() {
             </div>
             <p className="mb-2">‌Цены на пакеты действуют единоразовым платежом.</p>
             <p className="mb-2"> ‌Длительность сессии — 60 минут</p>
-            <button onClick={() => setIsFormModalOpen(true)} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+            <Link 
+              href={waSession}
+              // onClick={() => setIsFormModalOpen(true)} 
+              className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
+            >
               Записаться на сессию
-            </button>
+            </Link>
           </Card>
         </div>
         <Accordion>
@@ -382,7 +400,11 @@ export default function Home() {
           <Card>
             <div className="flex items-center gap-5">
               <Header>Остались вопросы?</Header>
-              <Link href="https://t.me/AnnaTsareva1" passHref onClick={() => setIsFormModalOpen(true)} className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+              <Link 
+                href="https://t.me/AnnaTsareva1" 
+                passHref 
+                className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
+              >
                 Спросить
               </Link>
             </div>
