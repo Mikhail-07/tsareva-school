@@ -77,17 +77,17 @@ export default function Home() {
   ]
   const priceLight = [
     {
-      header: 'Две сессии',
+      header: '2 сессии',
       price: '9500 ₽',
       oldPrice: '10000 ₽',
     },
     {
-      header: 'Четыре сессии',
+      header: '4 сессии',
       price: '18000 ₽',
       oldPrice: '20000 ₽',
     },
     {
-      header: 'Восемь сессий',
+      header: '8 сессий',
       price: '36000 ₽',
       oldPrice: '40000 ₽',
     }
@@ -357,13 +357,13 @@ export default function Home() {
             </SimpleCell>
             <Header className="mb-4">Действует акция на покупку пакетов сессий</Header>
             <div className="flex flex-col md:flex-row md:gap-10 flex-wrap">
-              {priceLight.map(({header, price, oldPrice}, idx) => 
-              <SimpleCell
+              {priceLight.map(({header, price, oldPrice}) => 
+              <div
                 key={header}
-                before={<span>{idx + 1}.</span>}
-                header={<Header>{header}</Header>}
+                className="flex gap-8 mb-6"
               >
-                <div className="flex gap-4">
+                <Header>{header}</Header>
+                <div className="flex flex-col gap-4">
                   <div>
                     <Header className="text-2xl">{price}</Header>
                   </div>
@@ -375,7 +375,7 @@ export default function Home() {
                   </div>
                 </div>
                 
-              </SimpleCell> 
+              </div> 
               )}
             </div>
             <p className="mb-2">‌Цены на пакеты действуют единоразовым платежом.</p>
