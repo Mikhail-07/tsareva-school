@@ -33,7 +33,7 @@ const RegistrationNotice: FC<RegistrationNoticeProps> = ({ success, failed, onCl
           </SimpleCell>
         </div>
       )}
-      <button onClick={onClose} className=" inline bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
+      <button onClick={() => onClose()} className=" inline bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition">
         Хорошо
       </button>
     </>

@@ -18,6 +18,7 @@ import { RiLink } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import ModalWindow from "@/components/ModalWindow";
 import RegistrationForm from "@/components/RegistrationForm";
+import { FiChevronDown } from "react-icons/fi";
 
 export default function Home() {
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
@@ -192,16 +193,16 @@ export default function Home() {
   const opacityFactor = Math.max(0, 1 - scrollY / 2000);
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-      {/* <ModalWindow
+      <ModalWindow
         onClose={() => setIsFormModalOpen(false)}
         isOpen={isFormModalOpen}
       >
         <RegistrationForm
           isFormModalOpen={ isFormModalOpen }
-          onClose={ () => setIsFormModalOpen(false) }
+          onClose={() => setIsFormModalOpen(false)}
         />
-      </ModalWindow> */}
-      <div className="h-screen-lvh py-4 mb-14 ">
+      </ModalWindow>
+      <div className="h-screen-lvh py-4 mb-14 relative">
         <div className="fixed z-10 max-w-7xl mx-auto h-full inset-x-0 px-4 " style={{ transform: `scale(${shrinkFactor})`, opacity: opacityFactor }}>
           <div className="flex flex-col h-full md:flex-row md:items-center justify-between rounded-3xl mb-6 relative">
             <div className="mb-2 md:mb-0 relative md:w-1/2 w-full h-full md:order-2 overflow-hidden">
@@ -218,18 +219,22 @@ export default function Home() {
                 <p>Царева</p>
               </div>
               <p className="text-lg">Сертифицированный коуч ICF</p>
-              <Link
-                // onClick={() => setIsFormModalOpen(true)}
-                href={waSession}
+              <button
                 className="text-center inline-block bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
+                onClick={() => setIsFormModalOpen(true)}
               >
                 Записаться на сессию
-              </Link>
+              </button>
+            </div>
+          </div>
+          <div className="absolute bottom-4 z-10 inset-x-0 flex justify-center">
+            <div className="animate-bounce text-white">
+              <FiChevronDown className="h-8 w-8" />
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-gray-900 rounded-t-3xl relative z-20">
+      <div className="bg-slate-900 rounded-t-3xl relative z-20">
         <div>
           <Card header="Обо мне">
             <SimpleCell
@@ -322,13 +327,13 @@ export default function Home() {
               {description}
             </SimpleCell>
           )}
-          <Link 
-            href={waSession}
-            // onClick={() => setIsFormModalOpen(true)} 
+          <button 
+            // href={waSession}
+            onClick={() => setIsFormModalOpen(true)} 
             className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
           >
             Записаться на сессию
-          </Link>
+          </button>
         </Card>
         <Card header="Бесплатная установочная сессия">
           <div>
@@ -339,13 +344,13 @@ export default function Home() {
               Длительность установочной сессии 30 минут.
             </p>
           </div>
-          <Link 
-            href={waOptionSession}
-            // onClick={() => setIsFormModalOpen(true)} 
+          <button 
+            // href={waOptionSession}
+            onClick={() => setIsFormModalOpen(true)} 
             className="inline-block text-center bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
            >
             Записаться на установочную сессию
-          </Link>
+          </button>
         </Card>
         <div>
           <h1 className="text-4xl mb-3">Цены</h1>
@@ -380,13 +385,13 @@ export default function Home() {
             </div>
             <p className="mb-2">‌Цены на пакеты действуют единоразовым платежом.</p>
             <p className="mb-2"> ‌Длительность сессии — 60 минут</p>
-            <Link 
-              href={waSession}
-              // onClick={() => setIsFormModalOpen(true)} 
+            <button 
+              // href={waSession}
+              onClick={() => setIsFormModalOpen(true)} 
               className="inline-block bg-transparent border border-gray-400  text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition"
             >
               Записаться на сессию
-            </Link>
+            </button>
           </Card>
         </div>
         <Accordion>

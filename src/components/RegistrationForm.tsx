@@ -5,7 +5,7 @@ import Card from './Card'
 import MyInput from './MyInput'
 import RegistrationNotice from './RegistrationNotice'
 import Spinner from './Spiner'
-import axios from 'axios'
+import emailjs from 'emailjs-com';
 import InputMask from 'react-input-mask';
 
 
@@ -45,32 +45,40 @@ const RegistrationForm: FC<RegistrationFormProps> = ({isFormModalOpen, onClose})
   const sendMail = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsLoading(true);
-  
+
     const isValid = formValidate();
     if (!isValid) {
       setIsLoading(false);
       return;
     }
-  
+
     try {
-      const response = await axios.post('/api/sendEmail', {
-        name,
-        phone,
-      });
-  
-      console.log('Email sent successfully!');
-      setName('');
-      setPhone('');
-      setTgName('');
-      setSendingSuccessful(true);
+        const templateParams = {
+            name: name,
+            phone: phone,
+            tgName: tgName,
+        };
+
+        const response = await emailjs.send(
+            'service_jz3a7tf',        
+            'template_p20nxee',        
+            templateParams,
+            'lS9_9NMt0oP_D-4sN'             
+        );
+
+        console.log('Email sent successfully!', response.status, response.text);
+        setName('');
+        setPhone('+7 ___ ___ __ __ ');
+        setTgName('');
+        setSendingSuccessful(true);
     } catch (error) {
-      setSendingError(true);
-      console.error('Error sending email:', error);
-      console.log('Failed to send email.');
+        setSendingError(true);
+        console.error('Error sending email:', error);
+        console.log('Failed to send email.');
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
-  }
+  };
   
 
   const formValidate = () => {
@@ -90,15 +98,18 @@ const RegistrationForm: FC<RegistrationFormProps> = ({isFormModalOpen, onClose})
     return true;
   }
   return (
-    <Card header="Запись на сессию">
+    <Card header="Заполните форму">
           {sendingSuccessful || sendingError ?
             <RegistrationNotice
               success={sendingSuccessful}
               failed={sendingError}
-              onClose={() => closeForm()}
+              onClose={onClose}
             />
           :
             <form className="">
+              <div className='mb-2'>
+                Ответ придет в течении суток
+              </div>
               <MyInput
                 label="Имя и Фамилия"
                 value={name}
@@ -120,12 +131,12 @@ const RegistrationForm: FC<RegistrationFormProps> = ({isFormModalOpen, onClose})
                   className="px-4 mb-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
               </div>
-              <MyInput
+              {/* <MyInput
                 label="Телеграмм аккаунт"
                 value={tgName}
                 onChange={setTgName}
                 placeholder="Введите ваш tg"
-              />
+              /> */}
               <div className="mb-4">
                 <label className="inline-flex items-center cursor-pointer">
                 <input
