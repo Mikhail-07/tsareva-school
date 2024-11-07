@@ -79,18 +79,18 @@ export default function Home() {
   const priceLight = [
     {
       header: '2 сессии',
-      price: '9500 ₽',
-      oldPrice: '10000 ₽',
+      price: '11 тыс. ₽',
+      oldPrice: '12 тыс. ₽',
     },
     {
       header: '4 сессии',
-      price: '18000 ₽',
-      oldPrice: '20000 ₽',
+      price: '22 тыс. ₽',
+      oldPrice: '24 тыс. ₽',
     },
     {
       header: '8 сессий',
-      price: '36000 ₽',
-      oldPrice: '40000 ₽',
+      price: '45 тыс. ₽',
+      oldPrice: '48 тыс. ₽',
     }
   ]
   const accordionItems = [
@@ -138,7 +138,7 @@ export default function Home() {
     "Судья Vogue Ball при фестивале NOGI v RUKI Ярославль 2016г.",
     "Судья Grodno Vogue Ball 2016. Back In USSR",
     "Танцор в клипе Ивана Дорна «Ты всегда в плюсе» 2016",
-    "Гость в передаче «Пани пробуют» ходить на каблуках. Преподаватель модельной походки",
+    "Гость в передаче «Парни пробуют» ходить на каблуках. Преподаватель модельной походки",
     "Судья всероссийского танцевального конкурса «Русские звезды» 2016 г. Санкт-Петербург",
     "Модель дизайнера Анастасии Капранчик. Каталог весна-лето 2016",
     "Модель и танцор на Недели Моды в Санкт-Петербурге, дизайнера Arny Praht 2015. Открывала и закрывала показ",
@@ -225,6 +225,9 @@ export default function Home() {
               >
                 Записаться на сессию
               </button>
+              <Link href="/mini-course" className="text-center inline-block bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition mt-4"> 
+                мини-курс «Внутренний критик»
+              </Link>
             </div>
           </div>
           <div className="absolute bottom-4 z-10 inset-x-0 flex justify-center">
@@ -294,13 +297,13 @@ export default function Home() {
           </Card>
         </div>
         <div className="flex  md:gap-10 md:flex-nowrap items-center flex-wrap">
-          <div className="relative w-screen md:w-1/2 md:mx-0 h-96 -mx-4  mb-8 md:order-2">
+          {/* <div className="relative w-screen md:w-1/2 md:mx-0 h-96 -mx-4  mb-8 md:order-2">
             <img
               src='/hero2.jpeg'
               alt="Vertical Photo 2"
               className="absolute inset-0 w-full h-full object-cover"
             />
-          </div>
+          </div> */}
           <div className="mb-8 md:w-1/2">
             <p className="mb-6">
               На протяжении 18 лет тренировала танцоров, выращивала из них лидеров, педагогов, чьи работы как сольных артистов, так и постановщиков вы видите на экранах федеральных каналов, кино, а также на различных шоу самых разных форматов.
@@ -353,14 +356,14 @@ export default function Home() {
           </button>
         </Card>
         <div>
-          <h1 className="text-4xl mb-3">Цены</h1>
+          <h1 className="text-4xl mb-3">Стоимость</h1>
           <Card>
             <SimpleCell
-              before={<Header>Разовая сессия</Header>}
+              before={<Header>Одна сессия</Header>}
             >
-              <Header className="text-2xl">5000 ₽</Header>
+              <Header className="text-2xl">6 тыс. ₽</Header>
             </SimpleCell>
-            <Header className="mb-4">Действует акция на покупку пакетов сессий</Header>
+            <Header className="mb-4">При покупке пакета сессий действует скидка</Header>
             <div className="flex flex-col md:flex-row md:gap-10 flex-wrap">
               {priceLight.map(({header, price, oldPrice}) => 
               <div
